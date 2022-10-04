@@ -1,23 +1,22 @@
 function carregar() {
     
     var titulo = window.document.querySelector('h1')
-    
-    var data = window.document.querySelector('#hora')
-    hora = new Date().getHours()
-    hora = ("00" + hora).slice(-2) 
+    //Variavel para o título, ele mudará conforme o periodo(manhã, tarde ou noite)
 
-    // puxo a hora e transformo ela em 2 casas decimais
+    var lhorario = window.document.querySelector('#hora')
+    var horario = new Date().toLocaleTimeString().substring(0, 5)
+    //Variavel horario que é hora:minutos
 
-    minutos = new Date().getMinutes()
-    minutos = ("00" + minutos).slice(-2)
+    var hora = horario.substring(0,2)
+    //Variavel hora que é somente a hora.
 
-    // puxo os minutos e transformo eles em 2 casas decimais
-
-    data.innerHTML = `Agora são ${hora}:${minutos}`
+    lhorario.innerHTML = `Agora são ${horario}.`
+    //aqui fica a segunda frase
 
     var img = window.document.querySelector('#imagem')
+    //seleciono o local da imagem
 
-    if(hora >= 0 && hora < 12) {
+    if (hora >= 0 && hora < 12) {
         //BOM DIA
         titulo.innerHTML = ('BOM DIA!')
         img.src = './img/dia.png'
@@ -37,39 +36,36 @@ function carregar() {
 
     var frase2 = window.document.querySelector('#frase2')
     var semana = new Date().getDay()
+    //criei uma variavel para a semana
 
     switch(semana) {
         case 0:
             semana = ('domingo')
         break
         case 1:
-            semana = ('segunda feira')
+            semana = ('segunda-feira')
         break
         case 2:
-            semana = ('terça feira')
+            semana = ('terça-feira')
         break
         case 3:
-            semana = ('quarta feira')
+            semana = ('quarta-feira')
         break
         case 4:
-            semana = ('quinta feira')
+            semana = ('quinta-feira')
         break
         case 5:
-            semana = ('sexta feira')
+            semana = ('sexta-feira')
         break
         case 6:
             semana = ('sábado')
         break
     }
-    // criando variavel dia e colocandoo 2 casas decimais
-    var dia = new Date().getDate()
-    dia = ("00" + dia).slice(-2)
-    // criando variavel mes e colocando 2 casas decimais
-    var mes = new Date().getMonth()
-    mes = (mes + 1)
-    mes = ("00" + mes).slice(-2)
-    // criando variavel ano
-    var ano = new Date().getFullYear()
+    //switch do numero da semana para o nome de semana
+    
+    var data = new Date().toLocaleDateString()
+    // data é a variavel da data completa
 
-    frase2.innerHTML = `Hoje é ${semana}, dia ${dia}/${mes}/${ano}.`
+    frase2.innerHTML = `Hoje é ${semana}, dia ${data}.`
+    // aqui fica a primeira frase
 }
